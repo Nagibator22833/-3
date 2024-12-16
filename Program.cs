@@ -43,7 +43,10 @@ namespace Лаба3
 
                     nofile.Add(file);
                 }
-                
+                catch (FormatException)
+                {
+                    badData.Add(file);
+                }
                 
             }       
 
