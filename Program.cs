@@ -19,6 +19,10 @@ namespace Лаба3
             List<string > badData = new List<string>();
             List<string>overflow=new List<string>();
             List<int> result = new List<int>();
+            foreach (string file in files)
+            {
+
+            }
 
 
         
