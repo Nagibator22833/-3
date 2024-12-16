@@ -15,6 +15,8 @@ namespace Лаба3
                  , "14.txt" , "15.txt", "16.txt", "17.txt" , "18.txt",
                 "19.txt", "20.txt", "21.txt","22.txt","23.txt","24.txt" ,"25.txt"};
             List <string> nofile = new List<string>();
+            List<string > badData = new List<string>();
+
 
         
         
