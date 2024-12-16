@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,15 @@ namespace Лаба3
             List<int> result = new List<int>();
             foreach (string file in files)
             {
+                try
+                {
+                    var lines = File.ReadAllLines(file);
 
+
+
+
+
+                }
             }
 
 
