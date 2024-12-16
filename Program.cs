@@ -46,10 +46,12 @@ namespace Лаба3
                 }
                 catch (FormatException)
                 {
+                    badData.Add(file);
                     Console.WriteLine($"Невірний формат даних у файлі: {file}");
                 }
                 catch (OverflowException)
                 {
+                    overflow.Add(file);
                     Console.WriteLine($"Переповнення в файлі: {file}");
                 }
             }
