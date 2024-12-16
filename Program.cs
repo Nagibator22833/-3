@@ -38,14 +38,10 @@ namespace Лаба3
 
 
                 }
-            catch
+            catch(FileNotFoundException)
                 {
 
-
-
-
-
-
+                    nofile.Add(file);
                 }
                 
                 
