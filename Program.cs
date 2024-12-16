@@ -58,13 +58,24 @@ namespace Лаба3
                 File.WriteAllLines("bad_data.txt", badData);
                 File.WriteAllLines("overflow.txt", overflow);
             }
+            catch
+            {
+                Console.WriteLine("Не вдалося створити вихідні файли!");
+                return;
+            }
+            if (result.Count > 0)
+            {
+                double average = result.Sum() / (double)result.Count;
+                Console.WriteLine($"Середнє арифметичне добутків: {average}");
+            }
+            else
+            {
+                Console.WriteLine("Не вдалося обчислити жодного добутку.");
+            }
 
 
-        
-        
-        
-        
-        
+
+
         }
     }
 }
