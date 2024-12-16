@@ -51,7 +51,13 @@ namespace Лаба3
                 {
                     overflow.Add(file);
                 }
-            }       
+            }
+            try
+            {
+                File.WriteAllLines("no_file.txt", nofile);
+                File.WriteAllLines("bad_data.txt", badData);
+                File.WriteAllLines("overflow.txt", overflow);
+            }
 
 
         
