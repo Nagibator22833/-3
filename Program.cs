@@ -31,11 +31,25 @@ namespace Лаба3
                     }
                     int number1 = int.Parse(lines[0]);
                     int number2 = int.Parse(lines[1]);
+                    checked
+                    {
+                        result.Add(number1 * number2);
+                    }
+
+
+                }
+            catch
+                {
+
+
+
 
 
 
                 }
-            }
+                
+                
+            }       
 
 
         
