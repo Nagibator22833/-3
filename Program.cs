@@ -42,14 +42,15 @@ namespace Лаба3
                 {
 
                     nofile.Add(file);
+                   
                 }
                 catch (FormatException)
                 {
-                    badData.Add(file);
+                    Console.WriteLine($"Невірний формат даних у файлі: {file}");
                 }
                 catch (OverflowException)
                 {
-                    overflow.Add(file);
+                    Console.WriteLine($"Переповнення в файлі: {file}");
                 }
             }
             try
