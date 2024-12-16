@@ -18,7 +18,7 @@ namespace Лаба3
             List <string> nofile = new List<string>();
             List<string > badData = new List<string>();
             List<string>overflow=new List<string>();
-
+            List<string> 
 
 
         
