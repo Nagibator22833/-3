@@ -27,7 +27,7 @@ namespace Лаба3
                     var lines = File.ReadAllLines(file);
                     if (lines.Length < 2)
                     {
-                        throw new Exception("У файлі менше двох рядків");
+                        throw new Exception();
                     }
                     int number1 = int.Parse(lines[0]);
                     int number2 = int.Parse(lines[1]);
