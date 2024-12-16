@@ -47,7 +47,10 @@ namespace Лаба3
                 {
                     badData.Add(file);
                 }
-                
+                catch (OverflowException)
+                {
+                    overflow.Add(file);
+                }
             }       
 
 
