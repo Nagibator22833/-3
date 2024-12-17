@@ -11,54 +11,53 @@ namespace Лаба3
     {
         static void Main(string[] args)
         {
-            string[] files =
-            { "10.txt", "11.txt", "12.txt" , "13.txt"
-                 , "14.txt" , "15.txt", "16.txt", "17.txt" , "18.txt",
-                "19.txt", "20.txt", "21.txt","22.txt","23.txt","24.txt" ,"25.txt"
-            };
-            List <string> nofile = new List<string>();
-            List<string > badData = new List<string>();
-            List<string>overflow=new List<string>();
-            List<int> result = new List<int>();
-            foreach (string file in files)
+            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory());
+           
+            var noFile = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\no_file.txt", FileMode.Open);
+            var badData = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\bad_data.txt", FileMode.Open);
+            var overflow = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\overflow.txt", FileMode.Open);
+            var noFileWriter = new StreamWriter(noFile);
+            var badDataWriter = new StreamWriter(badData);
+            var overflowWriter = new StreamWriter(overflow);
+
+            double result = 0;
+            int count = 0;
+            for (int i = 10; i <= 29; i++)
             {
                 try
                 {
-                    var lines = File.ReadAllLines(file);
-                    if (lines.Length < 2)
+                    using (var fileReader = new StreamReader($@"C:\Лаби ооп\Лаба3\bin\Debug\{i}.txt"))
                     {
-                        throw new Exception("У файлі менше двох рядків");
+                        int number1 = int.Parse(fileReader.ReadLine());
+                        int number2 = int.Parse(fileReader.ReadLine());
+                        result += checked(number1 * number2);
                     }
-                    int number1 = int.Parse(lines[0]);
-                    int number2 = int.Parse(lines[1]);
-                    checked
-                    {
-                        result.Add(number1 * number2);
-                    }
-
-
+                    count++;
                 }
-            catch(FileNotFoundException)
+                catch(FileNotFoundException)
                 {
-
-                    nofile.Add(file);
+                    noFileWriter.WriteLine($"{i}.txt");
+                    Console.WriteLine($"Файл не знайдено: {i}.txt");
                 }
                 catch (FormatException)
                 {
-                    badData.Add(file);
+                    badDataWriter.WriteLine($"{i}.txt");
+                    Console.WriteLine($"Невірний формат даних у файлі: {i}.txt");
                 }
                 catch (OverflowException)
                 {
-                    overflow.Add(file);
+                   overflowWriter.WriteLine($"{i}.txt");
+                    Console.WriteLine($" Переповнення у файлі: {i}.txt");
                 }
-            }       
-
-
-        
-        
-        
-        
-        
+                catch
+                {
+                    Console.WriteLine("Не вдалося відкрити вихідні файли!");
+                }
+            }
+            noFileWriter.Close();
+            badDataWriter.Close();
+            overflowWriter.Close();
+            Console.WriteLine(result/count);
         }
     }
 }
