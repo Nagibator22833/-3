@@ -11,16 +11,13 @@ namespace Лаба3
     {
         static void Main(string[] args)
         {
-            string[] files =
-            { "10.txt", "11.txt", "12.txt" , "13.txt"
-                 , "14.txt" , "15.txt", "16.txt", "17.txt" , "18.txt",
-                "19.txt", "20.txt", "21.txt","22.txt","23.txt","24.txt" ,"25.txt"
-            };
-            List <string> nofile = new List<string>();
-            List<string > badData = new List<string>();
-            List<string>overflow=new List<string>();
-            List<int> result = new List<int>();
-            foreach (string file in files)
+            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory());
+           
+            var noFile = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\no_file.txt", FileMode.Append);
+            var badData = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\bad_data.txt", FileMode.Append);
+            var overflow = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\overflow.txt", FileMode.Append);
+            long result = 0;
+            for (int i = 10; i <= 29; i++)
             {
                 try
                 {
@@ -33,7 +30,10 @@ namespace Лаба3
                     int number2 = int.Parse(lines[1]);
                     checked
                     {
-                        result.Add(number1 * number2);
+                        result.Add((int)number1 * (int)number2);
+                        double average = result.Sum() / (double)result.Count;
+                        Console.WriteLine($"Середнє арифметичне добутків: {average}");
+
                     }
 
 
@@ -66,15 +66,10 @@ namespace Лаба3
                 Console.WriteLine("Не вдалося створити вихідні файли!");
                 return;
             }
-            if (result.Count > 0)
-            {
-                double average = result.Sum() / (double)result.Count;
-                Console.WriteLine($"Середнє арифметичне добутків: {average}");
-            }
-            else
-            {
-                Console.WriteLine("Не вдалося обчислити жодного добутку.");
-            }
+           
+              
+            
+           
 
 
 
