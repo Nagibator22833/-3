@@ -13,14 +13,14 @@ namespace Лаба3
         {
             string[] files = Directory.GetFiles(Directory.GetCurrentDirectory());
            
-            var noFile = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\no_file.txt", FileMode.Append);
-            var badData = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\bad_data.txt", FileMode.Append);
-            var overflow = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\overflow.txt", FileMode.Append);
+            var noFile = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\no_file.txt", FileMode.Open);
+            var badData = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\bad_data.txt", FileMode.Open);
+            var overflow = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\overflow.txt", FileMode.Open);
             var noFileWriter = new StreamWriter(noFile);
             var badDataWriter = new StreamWriter(badData);
             var overflowWriter = new StreamWriter(overflow);
 
-            long result = 0;
+            double result = 0;
             int count = 0;
             for (int i = 10; i <= 29; i++)
             {
@@ -36,40 +36,28 @@ namespace Лаба3
                 }
                 catch(FileNotFoundException)
                 {
-
-                    noFile.;
-                   
+                    noFileWriter.WriteLine($"{i}.txt");
+                    Console.WriteLine($"Файл не знайдено: {i}.txt");
                 }
                 catch (FormatException)
                 {
-                    badData.Add(file);
-                    Console.WriteLine($"Невірний формат даних у файлі: {file}");
+                    badDataWriter.WriteLine($"{i}.txt");
+                    Console.WriteLine($"Невірний формат даних у файлі: {i}.txt");
                 }
                 catch (OverflowException)
                 {
-                    overflow.Add(file);
-                    Console.WriteLine($"Переповнення в файлі: {file}");
+                   overflowWriter.WriteLine($"{i}.txt");
+                    Console.WriteLine($" Переповнення у файлі: {i}.txt");
+                }
+                catch
+                {
+                    Console.WriteLine("Не вдалося відкрити вихідні файли!");
                 }
             }
-            try
-            {
-                File.WriteAllLines("no_file.txt", nofile);
-                File.WriteAllLines("bad_data.txt", badData);
-                File.WriteAllLines("overflow.txt", overflow);
-            }
-            catch
-            {
-                Console.WriteLine("Не вдалося створити вихідні файли!");
-                return;
-            }
-           
-              
-            
-           
-
-
-
-
+            noFileWriter.Close();
+            badDataWriter.Close();
+            overflowWriter.Close();
+            Console.WriteLine(result/count);
         }
     }
 }
