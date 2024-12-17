@@ -16,32 +16,28 @@ namespace Лаба3
             var noFile = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\no_file.txt", FileMode.Append);
             var badData = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\bad_data.txt", FileMode.Append);
             var overflow = new FileStream(@"C:\Лаби ооп\Лаба3\bin\Debug\overflow.txt", FileMode.Append);
+            var noFileWriter = new StreamWriter(noFile);
+            var badDataWriter = new StreamWriter(badData);
+            var overflowWriter = new StreamWriter(overflow);
+
             long result = 0;
+            int count = 0;
             for (int i = 10; i <= 29; i++)
             {
                 try
                 {
-                    var lines = File.ReadAllLines(file);
-                    if (lines.Length < 2)
+                    using (var fileReader = new StreamReader($@"C:\Лаби ооп\Лаба3\bin\Debug\{i}.txt"))
                     {
-                        throw new Exception();
+                        int number1 = int.Parse(fileReader.ReadLine());
+                        int number2 = int.Parse(fileReader.ReadLine());
+                        result += checked(number1 * number2);
                     }
-                    int number1 = int.Parse(lines[0]);
-                    int number2 = int.Parse(lines[1]);
-                    checked
-                    {
-                        result.Add((int)number1 * (int)number2);
-                        double average = result.Sum() / (double)result.Count;
-                        Console.WriteLine($"Середнє арифметичне добутків: {average}");
-
-                    }
-
-
+                    count++;
                 }
-            catch(FileNotFoundException)
+                catch(FileNotFoundException)
                 {
 
-                    nofile.Add(file);
+                    noFile.;
                    
                 }
                 catch (FormatException)
